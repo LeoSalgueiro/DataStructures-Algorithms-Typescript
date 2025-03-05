@@ -1,19 +1,20 @@
+import SingleLinkedList from './linkedlist/SingleLinkedList';
 import Queue from './queue/Queue';
 console.log('¡Proyecto TypeScript inicializado correctamente!'); 
 
 
-const queue = new Queue<number>();
+const linkedList = new SingleLinkedList<number>();
 
-queue.enqueue(1);
-queue.enqueue(2);
-queue.enqueue(3);
+linkedList.add(1);
+linkedList.add(2);
+linkedList.add(3);
 
-queue.print();
+linkedList.print();
 
-console.log(queue.dequeue());
-console.log(queue.peek());
-console.log(queue.isEmpty());
-console.log(queue.size());
+linkedList.remove(2);
 
-queue.clear();
-queue.print();
+linkedList.print();
+
+linkedList.clear();
+
+linkedList.print();
