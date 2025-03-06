@@ -25,19 +25,33 @@ class SingleLinkedList<T>{
             this.head = node;
             this.tail = node;
         } else {
-            if(this.tail) {
-                this.tail.next = node;
+                this.tail!.next = node;
                 this.tail = node;
-            }
         }
         this.size++;
     }
     
     remove(value: T) : void {
-        if (!this.head) return;
-        if (this.head.value === value) {
+        if (this.head?.value === value) {
             this.head = this.head.next;
             this.size--;
+            if (!this.head) {
+                this.tail = null;
+            }
+            return;
+        }
+        
+        let current = this.head;
+        while (current?.next) {
+            if (current.next.value === value) {
+                current.next = current.next.next;
+                this.size--;
+                if (!current.next) {
+                    this.tail = current;
+                }
+                return;
+            }
+            current = current.next;
         }
     }
 
@@ -67,7 +81,6 @@ class SingleLinkedList<T>{
     print() : void {
         let current = this.head;
         while (current) {
-            console.log(current.value);
             current = current.next;
         }
     }
