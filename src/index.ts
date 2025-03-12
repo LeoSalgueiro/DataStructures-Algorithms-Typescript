@@ -1,10 +1,11 @@
-import { DoubleLinkedList } from './linkedlist/DoubleLinkedList';
-import SingleLinkedList from './linkedlist/SingleLinkedList';
-import Queue from './queue/Queue';
+import { HashTable } from './basic-data-structures/hash-tables/hashtable';
+import { DoubleLinkedList } from './basic-data-structures/linkedlist/DoubleLinkedList';
+import SingleLinkedList from './basic-data-structures/linkedlist/SingleLinkedList';
+import Queue from './basic-data-structures/queue/Queue';
 console.log('¡Proyecto TypeScript inicializado correctamente!'); 
 
 
-const linkedList = new SingleLinkedList<number>();
+
 /*
 linkedList.add(1);
 linkedList.add(2);
@@ -29,23 +30,34 @@ console.log('--------------------------------LIMPIANDO....');
 linkedList.print();
 
 */
-const doubleLinkedList = new DoubleLinkedList<number>();
-
-doubleLinkedList.add(1);
-doubleLinkedList.add(2);
-doubleLinkedList.add(3);
 
 
-doubleLinkedList.print();
+function twoSum(nums: number[], target: number): number[] {
+    const hashMap: { [key: number]: number } = {};
+    for (let i = 0; i < nums.length; i++) {
+        const num = nums[i];
+        if (hashMap[target - num] !== undefined) {
+            return [hashMap[target - num], i];
+        }
+        hashMap[num] = i;
+    }
+    return [];
+}
 
-console.log('--------------------------------REMOVIENDO....');
-doubleLinkedList.remove(1);
+// Test
+//console.log(twoSum([2, 7, 11, 15], 13));  // Output: [0, 1]
 
-doubleLinkedList.print();
 
-console.log('--------------------------------TAMAÑO....');
-console.log(doubleLinkedList.getSize());
+// Testeamos la HashTable
+const hashTable = new HashTable<string, number>();
 
-console.log('--------------------------------LIMPIANDO....');
-doubleLinkedList.clear();
-doubleLinkedList.print();
+hashTable.set("apple", 100);
+hashTable.set("banana", 200);
+hashTable.set("cherry", 300);
+
+console.log(hashTable.get("banana")); // 200
+console.log(hashTable.has("cherry")); // true
+console.log(hashTable.delete("apple")); // true
+console.log(hashTable.get("apple")); // undefined
+
+hashTable.print();
