@@ -1,23 +1,4 @@
 
-    // For integer keys, the hashing function returns the integer modulo the size of the hash table.
-function hashFunction(key: number, tableSize: number): number {
-    return key % tableSize;
-  }
-  
-  // Hashing functions for float keys can convert them to integers.
-  function hashFloatKey(key: number, tableSize: number): number {
-    return Math.floor(key * 1000) % tableSize; // example
-  }
-  
-  // Strings can be hashed by converting each character to its character code.
-  function hashStringKey(key: string, tableSize: number): number {
-    let hash = 0;
-    for (let i = 0; i < key.length; i++) {
-      hash += key.charCodeAt(i);
-    }
-    return hash % tableSize;
-  }
-
 
 export class HashTable<K, V> {
     private buckets: Map<K, V>[];
